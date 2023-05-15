@@ -25,16 +25,6 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Install Electron Forge
-        run: |
-          npm install --save-dev @electron-forge/cli
-          npm install --save-dev @electron-forge/maker-squirrel
-          npm install --save-dev @electron-forge/maker-zip
-          npm install --save-dev @electron-forge/maker-dmg
-          npm install --save-dev @electron-forge/maker-deb
-          npm install --save-dev @electron-forge/maker-rpm
-          npx electron-forge import
-
       - name: Debug
         run: |
           cat package.json
@@ -42,6 +32,17 @@ jobs:
       - name: COPY package.json
         run: |
           cp ./package.mac.json package.json
+
+      - name: Install Electron Forge
+        run: |
+          npm install
+          npm install --save-dev @electron-forge/cli
+          npm install --save-dev @electron-forge/maker-squirrel
+          npm install --save-dev @electron-forge/maker-zip
+          npm install --save-dev @electron-forge/maker-dmg
+          npm install --save-dev @electron-forge/maker-deb
+          npm install --save-dev @electron-forge/maker-rpm
+          npx electron-forge import
 
       - name: Make Artifacts
         run: |
