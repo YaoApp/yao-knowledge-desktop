@@ -1,4 +1,3 @@
-const http = require("http");
 const fs = require("fs");
 const url = require("url");
 const crypto = require("crypto");
@@ -39,7 +38,7 @@ const Upload = (file, urlstr, cb) => {
     };
 
     console.log(options);
-
+    const http = uri.protocol === "http:" ? require("http") : require("https");
     const req = http.request(options, (res) => {
       console.log(`状态码：${res.statusCode}`);
       console.log(`响应头：${JSON.stringify(res.headers)}`);

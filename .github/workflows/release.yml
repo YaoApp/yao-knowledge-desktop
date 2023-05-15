@@ -3,10 +3,10 @@ name: Release
 on:
   workflow_dispatch:
     inputs:
-      host:
-        description: "The remote server host"
+      url:
+        description: "The remote server url"
         required: true
-        default: "127.0.0.1"
+        default: "http://127.0.0.1"
 
       port:
         description: "The remote server port"
@@ -27,7 +27,7 @@ jobs:
 
       - name: Set Config
         run: |
-          echo 'module.exports = {host: "${{ github.event.inputs.host }}", port: ${{ github.event.inputs.port }}};' >> ./config.js
+          echo 'module.exports = {url: "${{ github.event.inputs.url }}", port: ${{ github.event.inputs.port }}};' >> ./config.js
           cat ./config.js
 
       - name: COPY package.json

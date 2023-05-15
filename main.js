@@ -74,7 +74,7 @@ ipcMain.on("drop-file", (event, filePath) => {
 
   Upload(
     filePath,
-    `http://${config.host}:${config.port}/api/doc/upload`,
+    `${config.url}:${config.port}/api/doc/upload`,
     (status, message) => {
       console.log(status, message);
 
