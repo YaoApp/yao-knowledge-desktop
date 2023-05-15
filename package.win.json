@@ -1,6 +1,7 @@
 {
   "name": "yao-knowledge-desktop",
   "version": "1.0.0",
+  "author": "YaoApps.com",
   "description": "yao knowledge client",
   "main": "main.js",
   "config": {
@@ -27,7 +28,6 @@
     "type": "git",
     "url": "git+https://github.com/YaoApp/yao-knowledge-desktop.git"
   },
-  "author": "",
   "license": "GPL-3.0 license",
   "bugs": {
     "url": "https://github.com/YaoApp/yao-knowledge-desktop/issues"
