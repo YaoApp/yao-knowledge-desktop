@@ -1,0 +1,86 @@
+name: Build Artifacts
+
+on:
+  workflow_dispatch:
+    inputs:
+      tags:
+        host: "the remote server host"
+        port: "the remote server port"
+
+jobs:
+  MacOS:
+    runs-on: macos-latest
+    steps:
+      - name: Install Yarn
+        run: |
+          npm install --global yarn
+          npm install --global npm@latest
+
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Install Electron Forge
+        run: |
+          npm install --save-dev @electron-forge/cli
+          npm install --save-dev @electron-forge/maker-squirrel
+          npm install --save-dev @electron-forge/maker-zip
+          npm install --save-dev @electron-forge/maker-dmg
+          npm install --save-dev @electron-forge/maker-deb
+          npm install --save-dev @electron-forge/maker-rpm
+          npx electron-forge import
+
+      - name: Debug
+        run: |
+          cat package.json
+
+      - name: COPY package.json
+        run: |
+          cp ./package.mac.json package.json
+
+      - name: Make Artifacts
+        run: |
+          npm run make
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: yao-knowledge-darwin-x64
+          path: |
+            out/make/zip/darwin/x64
+  Windows:
+    runs-on: windows-latest
+    steps:
+      - name: Install Yarn
+        run: |
+          npm install --global yarn
+          npm install --global npm@latest
+
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Install Electron Forge
+        run: |
+          npm install --save-dev @electron-forge/cli
+          npm install --save-dev @electron-forge/maker-squirrel
+          npm install --save-dev @electron-forge/maker-zip
+          npm install --save-dev @electron-forge/maker-dmg
+          npm install --save-dev @electron-forge/maker-deb
+          npm install --save-dev @electron-forge/maker-rpm
+          npx electron-forge import
+
+      - name: Debug
+        run: |
+          cat .\package.json
+
+      - name: COPY package.json
+        run: |
+          copy .\package.win.json .\package.json
+
+      - name: Make Artifacts
+        run: |
+          npm run make
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: yao-knowledge-windows-x64
+          path: |
+            out\make\squirrel.windows\x64\*.exe
