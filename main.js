@@ -1,24 +1,40 @@
 // main.js
 
 // Modules to control application life and create native browser window
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, screen, ipcMain } = require("electron");
 const path = require("path");
 
 const createWindow = () => {
+  const titleBarStyle =
+    process.platform === "darwin" ? "hiddenInset" : "hidden";
+
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
-    webPreferences: {
-      preload: path.join(__dirname, "preload.js"),
-    },
+    x: screen.getPrimaryDisplay().bounds.width - 160, // 将窗口定位在屏幕的右边
+    y: 100,
+    resizable: false,
+    maximizable: false,
+    minimizablen: false,
+    frame: false,
+    autoHideMenuBar: true,
+    transparent: true,
+    alwaysOnTop: true,
+    titleBarStyle: titleBarStyle,
+    webPreferences: { preload: path.join(__dirname, "preload.js") },
   });
 
   // and load the index.html of the app.
   mainWindow.loadFile("index.html");
 
+  // 隐藏窗口的标题栏和关闭按钮
+  if (process.platform === "darwin") {
+    mainWindow.setWindowButtonVisibility(false);
+  }
+
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools();
 };
 
 // This method will be called when Electron has finished
@@ -43,3 +59,9 @@ app.on("window-all-closed", () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+ipcMain.on("drop-file", (event, filePath) => {
+  console.log(`读取文件 ${filePath}`);
+  setTimeout(() => {
+    event.sender.send("drop-file-message", `文件 ${filePath} 已读取`);
+  }, 1000);
+});

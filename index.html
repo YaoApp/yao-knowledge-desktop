@@ -3,17 +3,48 @@
   <head>
     <meta charset="UTF-8" />
     <title>Hello World!</title>
+    <style>
+      body {
+        width: 100px;
+        height: 100px;
+        min-width: 100px;
+        min-height: 100px;
+        padding: 0;
+        margin: 0;
+        background: transparent;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        -webkit-app-region: drag;
+        /* border: 1px solid red; */
+      }
+
+      .dropzone {
+        width: 60px;
+        height: 60px;
+        opacity: 0.618;
+        background-color: #bc95e0;
+        border: 1px dashed #5f4478;
+        -webkit-app-region: drag;
+        border-radius: 12px;
+      }
+
+      .dragging-over {
+        opacity: 1;
+        border: 2px solid #5f4478;
+      }
+
+      .dragging-pending {
+        opacity: 0.618;
+        border: 2px dashed #11041c;
+      }
+    </style>
     <meta
       http-equiv="Content-Security-Policy"
       content="script-src 'self' 'unsafe-inline';"
     />
   </head>
   <body>
-    <h1>Hello World!</h1>
-    <p>
-      We are using Node.js <span id="node-version"></span>, Chromium
-      <span id="chrome-version"></span>, and Electron
-      <span id="electron-version"></span>.
-    </p>
+    <div id="dropzone" class="dropzone"></div>
   </body>
 </html>
