@@ -25,13 +25,15 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Debug
+      - name: Set Config
         run: |
-          cat package.json
+          echo 'module.exports = {host: "${{ github.event.inputs.host }}", port: ${{ github.event.inputs.port }}};' >> ./config.js
+          cat ./config.js
 
       - name: COPY package.json
         run: |
           cp ./package.mac.json package.json
+          cat ./package.json
 
       - name: Install Electron Forge
         run: |
@@ -64,6 +66,16 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
+      - name: Set Config
+        run: |
+          echo 'module.exports = {host: "${{ github.event.inputs.host }}", port: ${{ github.event.inputs.port }}};' >> .\config.js
+          cat .\config.js
+
+      - name: COPY package.json
+        run: |
+          copy .\package.win.json .\package.json
+          cat  .\package.json
+
       - name: Install Electron Forge
         run: |
           npm install --save-dev @electron-forge/cli
@@ -73,14 +85,6 @@ jobs:
           npm install --save-dev @electron-forge/maker-deb
           npm install --save-dev @electron-forge/maker-rpm
           npx electron-forge import
-
-      - name: Debug
-        run: |
-          cat .\package.json
-
-      - name: COPY package.json
-        run: |
-          copy .\package.win.json .\package.json
 
       - name: Make Artifacts
         run: |
