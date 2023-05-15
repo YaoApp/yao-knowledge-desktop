@@ -1,11 +1,10 @@
-name: Build Artifacts
+name: Release
 
 on:
   workflow_dispatch:
     inputs:
-      tags:
-        host: "the remote server host"
-        port: "the remote server port"
+      host: The remote server port
+      port: The remote server port
 
 jobs:
   MacOS:
