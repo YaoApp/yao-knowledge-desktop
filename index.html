@@ -27,6 +27,12 @@
         border: 1px dashed #5f4478;
         -webkit-app-region: drag;
         border-radius: 12px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 12px;
+        color: #3b2b4a;
+        padding: 0.5em;
       }
 
       .dragging-over {
@@ -35,8 +41,35 @@
       }
 
       .dragging-pending {
-        opacity: 0.618;
-        border: 2px dashed #11041c;
+        height: 60px;
+        opacity: 1;
+        border: 2px dashed #5f4478;
+        animation: borderBreath 2s infinite, widthBreath 2s alternate infinite;
+      }
+
+      @keyframes borderBreath {
+        0% {
+          border-color: #5f4478;
+        }
+        50% {
+          border-color: #ae7bdf;
+        }
+        100% {
+          border-color: #5f4478;
+        }
+      }
+
+      /* 宽度变化动画 */
+      @keyframes widthBreath {
+        0% {
+          width: 60px;
+        }
+        50% {
+          width: 80px;
+        }
+        100% {
+          width: 60px;
+        }
       }
     </style>
     <meta
@@ -45,6 +78,8 @@
     />
   </head>
   <body>
-    <div id="dropzone" class="dropzone"></div>
+    <div id="dropzone" class="dropzone">
+      <div id="dropzone-text">拖入文件</div>
+    </div>
   </body>
 </html>
