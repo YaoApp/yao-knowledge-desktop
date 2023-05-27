@@ -16,6 +16,8 @@ const createWindow = () => {
     height: 100,
     x: screen.getPrimaryDisplay().bounds.width - 160, // 将窗口定位在屏幕的右边
     y: 100,
+    // width: 800,
+    // Height:600,
     resizable: false,
     maximizable: false,
     minimizablen: false,

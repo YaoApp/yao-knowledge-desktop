@@ -15,7 +15,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        -webkit-app-region: drag;
+        /* -webkit-app-region: drag; */
 
         line-height: 1.5;
         -webkit-font-smoothing: antialiased;
@@ -32,7 +32,7 @@
         opacity: 0.918;
         background-color: #232326;
         border: 1px solid #404046;
-        -webkit-app-region: drag;
+        /* -webkit-app-region: drag; */
         border-radius: 12px;
         display: flex;
         justify-content: center;
@@ -41,6 +41,10 @@
         color: #a2a5b9;
         padding: 0.5em;
       }
+
+      #dropzone-text {
+        -webkit-app-region: drag;
+      } 
 
       .dragging-over {
         opacity: 1;
