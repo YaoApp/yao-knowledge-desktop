@@ -27,7 +27,7 @@ jobs:
 
       - name: Set Config
         run: |
-          echo 'module.exports = {url: "${{ github.event.inputs.url }}", port: ${{ github.event.inputs.port }}};' >> ./config.js
+          echo 'module.exports = {url: "${{ github.event.inputs.url }}", port: ${{ github.event.inputs.port }}};' > ./config.js
           cat ./config.js
 
       - name: COPY package.json
@@ -68,7 +68,7 @@ jobs:
 
       - name: Set Config
         run: |
-          echo 'module.exports = {host: "${{ github.event.inputs.host }}", port: ${{ github.event.inputs.port }}};' >> .\config.js
+          echo 'module.exports = {url: "${{ github.event.inputs.url }}", port: ${{ github.event.inputs.port }}};' > .\config.js
           cat .\config.js
 
       - name: COPY package.json
