@@ -16,46 +16,70 @@
         justify-content: center;
         align-items: center;
         -webkit-app-region: drag;
+
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        scroll-behavior: smooth;
+        text-rendering: optimizeLegibility;
+        text-size-adjust: 100%;
         /* border: 1px solid red; */
       }
 
       .dropzone {
         width: 60px;
         height: 60px;
-        opacity: 0.618;
-        background-color: #bc95e0;
-        border: 1px dashed #5f4478;
+        opacity: 0.918;
+        background-color: #232326;
+        border: 1px solid #404046;
         -webkit-app-region: drag;
         border-radius: 12px;
         display: flex;
         justify-content: center;
         align-items: center;
         font-size: 12px;
-        color: #3b2b4a;
+        color: #a2a5b9;
         padding: 0.5em;
       }
 
       .dragging-over {
         opacity: 1;
-        border: 2px solid #5f4478;
+        border: 2px solid #3b3b48;
       }
 
       .dragging-pending {
         height: 60px;
         opacity: 1;
-        border: 2px dashed #5f4478;
+        border: 2px solid #faad14;
         animation: borderBreath 2s infinite, widthBreath 2s alternate infinite;
+      }
+
+      .loading {
+        -webkit-transform: rotate(360deg);
+        animation: rotation 2.6s linear infinite;
+        -moz-animation: rotation 2.6s linear infinite;
+        -webkit-animation: rotation 2.6s linear infinite;
+        -o-animation: rotation 2.6s linear infinite;
+      }
+
+      @-webkit-keyframes rotation {
+        from {
+          -webkit-transform: rotate(0deg);
+        }
+        to {
+          -webkit-transform: rotate(360deg);
+        }
       }
 
       @keyframes borderBreath {
         0% {
-          border-color: #5f4478;
+          border-color: #3b3b48;
         }
         50% {
-          border-color: #ae7bdf;
+          border-color: #faad14;
         }
         100% {
-          border-color: #5f4478;
+          border-color: #3b3b48;
         }
       }
 
@@ -79,7 +103,9 @@
   </head>
   <body>
     <div id="dropzone" class="dropzone">
-      <div id="dropzone-text">拖入文件</div>
+      <div id="dropzone-text">
+        <img src="./assets/images/upload.svg" alt="" />
+      </div>
     </div>
   </body>
 </html>

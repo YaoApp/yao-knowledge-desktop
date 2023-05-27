@@ -29,7 +29,7 @@ window.addEventListener("DOMContentLoaded", () => {
     event.preventDefault();
     dropzone.classList.remove("dragging-over");
     dropzone.classList.add("dragging-pending");
-    text.innerHTML = "处理中...";
+    text.innerHTML = `<img class="loading" src="./assets/images/loader.svg" alt="" />`;
     pending = true;
 
     // 发送文件路径到主进程
@@ -47,7 +47,11 @@ window.addEventListener("DOMContentLoaded", () => {
         );
 
         const reset = () =>
-          setTimeout(() => (text.innerHTML = "拖入文件"), 5000);
+          setTimeout(
+            () =>
+              (text.innerHTML = `<img src="./assets/images/upload.svg" alt="" />`),
+            5000
+          );
 
         if (data && data.code == 400) {
           text.innerHTML = "不支持的文件类型";
@@ -62,13 +66,13 @@ window.addEventListener("DOMContentLoaded", () => {
         }
 
         if (data && data.code == 500) {
-          text.innerHTML = "处理失败";
+          text.innerHTML = `<img src="./assets/images/error.svg" alt="" />`;
           reset();
           return;
         }
 
         if (data && data.code == 200) {
-          text.innerHTML = "处理完成";
+          text.innerHTML = `<img src="./assets/images/upload.svg" alt="" />`;
           reset();
           return;
         }
