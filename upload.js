@@ -31,6 +31,7 @@ const Upload = (file, urlstr, cb) => {
       port: uri.port,
       path: uri.pathname,
       method: "POST",
+      rejectUnauthorized: false,
       headers: {
         "Content-Type": "application/json; charset=UTF-8",
         "Content-Length": body.length,
